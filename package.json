@@ -1,0 +1,135 @@
+{
+    "name": "devbook",
+    "description": "A 90s retro-inspired Ghost theme for Marketing for Developers",
+    "version": "1.0.0",
+    "engines": {
+        "ghost": ">=5.0.0"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Justin Jackson",
+        "email": "words@hey.com",
+        "url": "https://justinjackson.ca"
+    },
+    "keywords": [
+        "ghost",
+        "theme",
+        "ghost-theme",
+        "book",
+        "retro"
+    ],
+    "config": {
+        "posts_per_page": 50,
+        "image_sizes": {
+            "xxs": {
+                "width": 30
+            },
+            "xs": {
+                "width": 100
+            },
+            "s": {
+                "width": 300
+            },
+            "m": {
+                "width": 600
+            },
+            "l": {
+                "width": 1000
+            },
+            "xl": {
+                "width": 2000
+            }
+        },
+        "card_assets": true,
+        "custom": {
+            "color_scheme": {
+                "type": "select",
+                "options": [
+                    "Dark",
+                    "Light",
+                    "Auto"
+                ],
+                "default": "Dark"
+            },
+            "title_font": {
+                "type": "select",
+                "options": [
+                    "Retro Mono",
+                    "Modern Sans",
+                    "Classic Serif"
+                ],
+                "default": "Retro Mono"
+            },
+            "hero_heading": {
+                "type": "text",
+                "default": "Marketing for Developers",
+                "group": "homepage"
+            },
+            "hero_subheading": {
+                "type": "text",
+                "default": "A book for programmers who want to learn marketing",
+                "group": "homepage"
+            },
+            "hero_text": {
+                "type": "text",
+                "default": "I'm rewriting this book for the AI age. With so many new people building apps with AI, the hard part is finding customers.",
+                "group": "homepage"
+            },
+            "author_image": {
+                "type": "image",
+                "description": "Author photo for hero section",
+                "group": "homepage"
+            },
+            "email_cta_text": {
+                "type": "text",
+                "default": "Join the email list to get free chapters and new marketing tips",
+                "group": "homepage"
+            },
+            "post_cta_text": {
+                "type": "text",
+                "default": "Like what you're reading? Sign up and get more chapters for free",
+                "group": "post"
+            },
+            "who_is_this_for_heading": {
+                "type": "text",
+                "default": "Who is this book for?",
+                "group": "homepage"
+            },
+            "who_is_this_for_text": {
+                "type": "text",
+                "default": "This book is for programmers, developers, and technical founders who want to learn how to market their products.",
+                "group": "homepage"
+            },
+            "membership_price": {
+                "type": "text",
+                "default": "$199/year",
+                "group": "pricing"
+            },
+            "author_bio": {
+                "type": "text",
+                "default": "Hi, I'm Justin Jackson. I'm the co-founder of Transistor.fm, a podcast hosting platform that serves over 35,000 podcasts. I've also consulted on marketing & growth for startups in London, San Francisco, Boulder, and Portland. I wrote the first version of Marketing for Developers in October 2015. Since then, it has been purchased more than 5,000 times.",
+                "group": "homepage"
+            }
+        }
+    },
+    "scripts": {
+        "dev": "gulp",
+        "build": "gulp build",
+        "zip": "gulp zip",
+        "test": "gscan ."
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.7",
+        "cssnano": "^5.1.12",
+        "gulp": "^4.0.2",
+        "gulp-concat": "^2.6.1",
+        "gulp-livereload": "^4.0.2",
+        "gulp-postcss": "^9.0.1",
+        "gulp-uglify": "^3.0.2",
+        "gulp-zip": "^5.1.0",
+        "postcss": "^8.2.13",
+        "postcss-easy-import": "^4.0.0",
+        "pump": "^3.0.0"
+    }
+}
+

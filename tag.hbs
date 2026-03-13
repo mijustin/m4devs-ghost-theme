@@ -1,0 +1,38 @@
+{{!< default}}
+{{!-- Tag archive template --}}
+
+<div class="db-tag-page">
+    {{#tag}}
+    <header class="db-tag-header">
+        <div class="db-section-inner">
+            <h1 class="db-page-title">{{name}}</h1>
+            {{#if description}}
+            <p class="db-page-subtitle">{{description}}</p>
+            {{else}}
+            <p class="db-page-subtitle">
+                {{plural ../pagination.total empty="No posts" singular="% post" plural="% posts"}} tagged with "{{name}}"
+            </p>
+            {{/if}}
+        </div>
+    </header>
+    {{/tag}}
+
+    <section class="db-tag-content">
+        <div class="db-section-inner">
+            {{#if posts}}
+            <div class="db-post-feed">
+                {{#foreach posts}}
+                {{> "post-card"}}
+                {{/foreach}}
+            </div>
+
+            {{pagination}}
+            {{else}}
+            <div class="db-empty-state">
+                <p>No posts found with this tag.</p>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+</div>
+

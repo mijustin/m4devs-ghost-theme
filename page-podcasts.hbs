@@ -1,0 +1,89 @@
+{{!< default}}
+{{!-- Custom Podcasts Page --}}
+{{!-- Create a page in Ghost Admin with slug "podcasts" to use this template --}}
+
+<div class="db-updates-page">
+    <header class="db-updates-header">
+        <div class="db-section-inner">
+            <h1 class="db-page-title">Podcasts</h1>
+            <p class="db-page-subtitle">Listen to the Marketing for Developers podcasts, or sign up to get the members edition!</p>
+        </div>
+    </header>
+
+    <div class="db-account">
+        {{#if @member.paid}}
+            {{!-- STATE 3: Paid Member - Just show Private Podcasts --}}
+            <section class="db-account-section">
+                <h2 class="db-account-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                        <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                    </svg>
+                    Private Podcasts
+                </h2>
+                <p class="db-account-section-desc">Access your exclusive member-only podcast feed below</p>
+                <div class="db-podcast-embed">
+                    <iframe 
+                        width="100%" 
+                        height="400" 
+                        frameborder="no" 
+                        scrolling="no" 
+                        seamless 
+                        src="https://partner.transistor.fm/ghost/embed/{{@member.uuid}}"
+                    ></iframe>
+                </div>
+            </section>
+        {{else}}
+            {{!-- STATE 1 & 2: Not logged in OR Free Member --}}
+            
+            {{!-- Public Podcast Section --}}
+            <section class="db-account-section">
+                <h2 class="db-account-section-title">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                    </svg>
+                    Public Podcast
+                </h2>
+                <p class="db-account-section-desc">Interviews with builders and marketers</p>
+                <div class="db-podcast-embed">
+                    <iframe width="100%" height="390" frameborder="no" scrolling="no" seamless="" src="https://share.transistor.fm/e/marketing-for-developers-2026/playlist"></iframe>
+                </div>
+            </section>
+
+            {{#if @member}}
+                {{!-- STATE 2: Free Member - show Private Podcast + CTA --}}
+                <section class="db-account-section">
+                    <h2 class="db-account-section-title">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                            <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                        </svg>
+                        Private Podcasts
+                    </h2>
+                    <p class="db-account-section-desc">Access your exclusive member-only podcast feed below</p>
+                    <div class="db-podcast-embed">
+                        <iframe 
+                            width="100%" 
+                            height="400" 
+                            frameborder="no" 
+                            scrolling="no" 
+                            seamless 
+                            src="https://partner.transistor.fm/ghost/embed/{{@member.uuid}}"
+                        ></iframe>
+                    </div>
+                </section>
+                
+                {{!-- CTA to Upgrade --}}
+                {{> "cta-footer" headline="Get Full Episodes" subheadline="Join the membership to get full podcast episodes, early access to new chapters, video training, and a private community."}}
+            {{else}}
+                {{!-- STATE 1: Not logged in - Just show CTA --}}
+                {{> "cta-footer" headline="Get Full Episodes" subheadline="Join the membership to get full podcast episodes, early access to new chapters, video training, and a private community."}}
+                
+                <p class="db-login-link" style="text-align: center; margin-top: var(--space-xl); margin-bottom: var(--space-12);">
+                    Already a member? 
+                    <a href="#/portal/signin" data-portal="signin">Sign in</a>
+                </p>
+            {{/if}}
+        {{/if}}
+    </div>
+</div>

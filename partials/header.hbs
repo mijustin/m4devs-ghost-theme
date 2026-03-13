@@ -1,0 +1,121 @@
+<header class="db-header">
+    <div class="db-header-inner">
+        <div class="db-header-brand">
+            <a class="db-logo" href="{{@site.url}}">
+                <span class="db-logo-text db-logo-full">{{@site.title}}</span>
+                <span class="db-logo-text db-logo-short">M4Devs</span>
+            </a>
+        </div>
+
+        <nav class="db-nav">
+            <ul class="db-nav-list">
+                <li class="db-nav-item">
+                    <a href="/lessons/" class="db-nav-link">Lessons</a>
+                </li>
+                <li class="db-nav-item">
+                    <a href="/book/" class="db-nav-link">The Book</a>
+                </li>
+                <li class="db-nav-item">
+                    <a href="/podcasts/" class="db-nav-link">Podcasts</a>
+                </li>
+                <li class="db-nav-item">
+                    <a href="/updates/" class="db-nav-link">Updates</a>
+                </li>
+                <li class="db-nav-item">
+                    <a href="/about/" class="db-nav-link">About</a>
+                </li>
+                {{#foreach navigation}}
+                <li class="db-nav-item">
+                    <a href="{{url}}" class="db-nav-link{{#if current}} is-active{{/if}}">{{label}}</a>
+                </li>
+                {{/foreach}}
+            </ul>
+        </nav>
+
+        <div class="db-header-actions">
+            <button class="db-btn-icon db-theme-toggle" aria-label="Toggle dark mode" data-theme-toggle>
+                <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+
+            <button class="db-btn-icon db-search-toggle" aria-label="Search" data-ghost-search>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+            </button>
+
+            {{#if @site.members_enabled}}
+            <div class="db-header-members">
+                {{#unless @member}}
+                    <a class="db-btn db-btn-outline" href="#/portal/signin" data-portal="signin">Sign in</a>
+                    {{#unless @site.members_invite_only}}
+                        <a class="db-btn db-btn-primary" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                    {{/unless}}
+                {{else}}
+                    <a class="db-btn db-btn-outline" href="/account/">Account</a>
+                {{/unless}}
+            </div>
+            {{/if}}
+
+            <button class="db-burger" aria-label="Menu" data-menu-toggle>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </div>
+
+    {{!-- Mobile menu --}}
+    <div class="db-mobile-menu" data-mobile-menu>
+        <nav class="db-mobile-nav">
+            <ul class="db-mobile-nav-list">
+                <li class="db-mobile-nav-item">
+                    <a href="/lessons/" class="db-mobile-nav-link">Lessons</a>
+                </li>
+                <li class="db-mobile-nav-item">
+                    <a href="/book/" class="db-mobile-nav-link">The Book</a>
+                </li>
+                <li class="db-mobile-nav-item">
+                    <a href="/podcasts/" class="db-mobile-nav-link">Podcasts</a>
+                </li>
+                <li class="db-mobile-nav-item">
+                    <a href="/updates/" class="db-mobile-nav-link">Updates</a>
+                </li>
+                <li class="db-mobile-nav-item">
+                    <a href="/about/" class="db-mobile-nav-link">About</a>
+                </li>
+                {{#foreach navigation}}
+                <li class="db-mobile-nav-item">
+                    <a href="{{url}}" class="db-mobile-nav-link{{#if current}} is-active{{/if}}">{{label}}</a>
+                </li>
+                {{/foreach}}
+            </ul>
+            {{#if @site.members_enabled}}
+            <div class="db-mobile-members">
+                {{#unless @member}}
+                    <a class="db-btn db-btn-outline db-btn-block" href="#/portal/signin" data-portal="signin">Sign in</a>
+                    {{#unless @site.members_invite_only}}
+                        <a class="db-btn db-btn-primary db-btn-block" href="#/portal/signup" data-portal="signup">Subscribe</a>
+                    {{/unless}}
+                {{else}}
+                    <a class="db-btn db-btn-outline db-btn-block" href="/account/">Account</a>
+                {{/unless}}
+            </div>
+            {{/if}}
+        </nav>
+    </div>
+</header>
+

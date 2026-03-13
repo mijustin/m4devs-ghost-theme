@@ -1,0 +1,291 @@
+{{!< default}}
+{{!-- Post template for chapters and updates --}}
+
+{{#post}}
+<article class="db-article {{post_class}}">
+    <header class="db-article-header">
+        <div class="db-article-header-inner">
+            {{!-- Breadcrumb navigation --}}
+            <nav class="db-breadcrumb">
+                {{#has tag="#new-book"}}
+                <a href="/book/">← Back to Table of Contents</a>
+                {{else}}
+                    {{#has tag="#original-book"}}
+                    <a href="/book/">← Back to Table of Contents</a>
+                    {{else}}
+                        {{#has tag="#updates"}}
+                        <a href="/updates/">← Back to Updates</a>
+                        {{else}}
+                        <a href="{{@site.url}}">← Back to Home</a>
+                        {{/has}}
+                    {{/has}}
+                {{/has}}
+            </nav>
+
+            {{!-- Chapter status pill --}}
+            <div class="db-article-meta-top">
+                {{#has tag="#new-book"}}
+                    <span class="db-status-pill db-status-new">New Book (2026)</span>
+                {{/has}}
+                {{#has tag="#original-book"}}
+                    <span class="db-status-pill db-status-original">Original Book (2015)</span>
+                {{/has}}
+
+                {{#if featured}}
+                    <span class="db-featured-badge">Featured</span>
+                {{/if}}
+            </div>
+
+            <h1 class="db-article-title">{{title}}</h1>
+
+            {{#if custom_excerpt}}
+            <p class="db-article-excerpt">{{custom_excerpt}}</p>
+            {{/if}}
+
+            <div class="db-article-byline">
+                <div class="db-article-authors">
+                    {{#foreach authors}}
+                    <a href="{{url}}" class="db-author-avatar">
+                        {{#if profile_image}}
+                        <img src="{{img_url profile_image size="xs"}}" alt="{{name}}">
+                        {{else}}
+                        <span class="db-avatar-placeholder">{{name.[0]}}</span>
+                        {{/if}}
+                    </a>
+                    {{/foreach}}
+                    <div class="db-author-info">
+                        <span class="db-author-names">{{authors}}</span>
+                        <div class="db-article-date">
+                            <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMMM D, YYYY"}}</time>
+                            {{#if reading_time}}
+                            <span class="db-reading-time">· {{reading_time}}</span>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {{!-- Chapter status note (for book chapters only) --}}
+            {{#has tag="#new-book"}}
+            <div class="db-chapter-status-note db-chapter-status-new">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <span>This is a new chapter from the 2026 edition</span>
+            </div>
+            {{/has}}
+            {{#has tag="#original-book"}}
+            <div class="db-chapter-status-note db-chapter-status-original">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                <span>This is from the original 2015 edition — free to read</span>
+            </div>
+            {{/has}}
+        </div>
+    </header>
+
+    {{!-- Feature image --}}
+    {{#if feature_image}}
+    <figure class="db-article-image">
+        <img 
+            srcset="{{img_url feature_image size="s"}} 300w,
+                    {{img_url feature_image size="m"}} 600w,
+                    {{img_url feature_image size="l"}} 1000w,
+                    {{img_url feature_image size="xl"}} 2000w"
+            sizes="(min-width: 1200px) 1000px, 90vw"
+            src="{{img_url feature_image size="l"}}"
+            alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+        >
+        {{#if feature_image_caption}}
+        <figcaption>{{feature_image_caption}}</figcaption>
+        {{/if}}
+    </figure>
+    {{/if}}
+
+    {{!-- Article content --}}
+    <section class="db-article-content gh-content">
+        {{content}}
+    </section>
+
+    {{!-- Membership CTA for non-members viewing gated content --}}
+    {{#if @site.members_enabled}}
+    {{#unless @member}}
+    {{#has visibility="paid,members"}}
+    <section class="db-membership-cta">
+        <div class="db-cta-card">
+            <h2>Want to read more?</h2>
+            <p>This content is available to members. Join to get full access to all chapters and updates.</p>
+            <div class="db-cta-buttons">
+                <a class="db-btn db-btn-primary" href="/#/portal/signup/" data-portal="signup">
+                    Join Membership — {{@custom.membership_price}}
+                </a>
+                <a class="db-btn db-btn-outline" href="#/portal/signin" data-portal="signin">
+                    Sign in
+                </a>
+            </div>
+        </div>
+    </section>
+    {{/has}}
+    {{/unless}}
+    {{/if}}
+
+    {{!-- Comments --}}
+    {{#if comments}}
+    <section class="db-comments">
+        {{comments}}
+    </section>
+    {{/if}}
+
+    {{!-- Post footer --}}
+    <footer class="db-article-footer">
+
+        {{!-- Chapter Navigation (for new book posts) --}}
+        {{#has tag="#new-book"}}
+        <nav class="db-chapter-nav">
+            <div class="db-chapter-nav-prev">
+                {{#prev_post in="tag.new-book"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">← Previous Chapter</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">← Previous Chapter</span>
+                    <span class="db-chapter-nav-title">You're at the beginning</span>
+                </span>
+                {{/prev_post}}
+            </div>
+            <div class="db-chapter-nav-next">
+                {{#next_post in="tag.new-book"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">Next Chapter →</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">Next Chapter →</span>
+                    <span class="db-chapter-nav-title">You've reached the end</span>
+                </span>
+                {{/next_post}}
+            </div>
+        </nav>
+        {{/has}}
+
+        {{!-- Chapter Navigation (for original book posts) --}}
+        {{#has tag="#original-book"}}
+        <nav class="db-chapter-nav">
+            <div class="db-chapter-nav-prev">
+                {{#prev_post in="tag.original-book"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">← Previous Chapter</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">← Previous Chapter</span>
+                    <span class="db-chapter-nav-title">You're at the beginning</span>
+                </span>
+                {{/prev_post}}
+            </div>
+            <div class="db-chapter-nav-next">
+                {{#next_post in="tag.original-book"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">Next Chapter →</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">Next Chapter →</span>
+                    <span class="db-chapter-nav-title">You've reached the end</span>
+                </span>
+                {{/next_post}}
+            </div>
+        </nav>
+        {{/has}}
+
+        {{!-- Newsletter CTA (for non-book posts only) --}}
+        {{^has tag="#book"}}
+        {{#if @site.members_enabled}}
+        <div class="db-newsletter-cta">
+            {{#if @member}}
+            <h3>You're on the list! Want to share this site with a friend?</h3>
+            <button class="db-btn db-btn-primary" onclick="navigator.share ? navigator.share({title: '{{@site.title}}', url: window.location.href}) : navigator.clipboard.writeText(window.location.href).then(() => this.textContent = 'Link copied!')">
+                Share this post
+            </button>
+            {{else}}
+            <h3>{{@custom.post_cta_text}}</h3>
+            <a class="db-btn db-btn-primary" href="#/portal/signup" data-portal="signup">
+                Subscribe for free
+            </a>
+            {{/if}}
+        </div>
+        {{/if}}
+        {{/has}}
+    </footer>
+</article>
+
+{{!-- Related posts for new book --}}
+{{#has tag="#new-book"}}
+{{#get "posts" filter="tag:hash-new-book+id:-{{id}}" limit="3" order="published_at asc" as |related|}}
+{{#if related}}
+<aside class="db-related-posts">
+    <div class="db-section-inner">
+        <h2 class="db-section-title">Continue Reading</h2>
+        <div class="db-chapter-list db-chapter-list-compact">
+            {{#foreach related}}
+            {{> "chapter-item"}}
+            {{/foreach}}
+        </div>
+        <div class="db-related-cta">
+            <a href="/book/" class="db-btn db-btn-outline">View all chapters</a>
+        </div>
+    </div>
+</aside>
+{{/if}}
+{{/get}}
+{{else}}
+{{!-- Related posts for original book --}}
+{{#has tag="#original-book"}}
+{{#get "posts" filter="tag:hash-original-book+id:-{{id}}" limit="3" order="published_at asc" as |related|}}
+{{#if related}}
+<aside class="db-related-posts">
+    <div class="db-section-inner">
+        <h2 class="db-section-title">Continue Reading</h2>
+        <div class="db-chapter-list db-chapter-list-compact">
+            {{#foreach related}}
+            {{> "chapter-item"}}
+            {{/foreach}}
+        </div>
+        <div class="db-related-cta">
+            <a href="/book/" class="db-btn db-btn-outline">View all chapters</a>
+        </div>
+    </div>
+</aside>
+{{/if}}
+{{/get}}
+{{else}}
+{{!-- Related updates for non-book posts --}}
+{{#get "posts" filter="id:-{{id}}" limit="3" as |related|}}
+{{#if related}}
+<aside class="db-related-posts">
+    <div class="db-section-inner">
+        <h2 class="db-section-title">More Updates</h2>
+        <div class="db-post-feed db-post-feed-compact">
+            {{#foreach related}}
+            {{> "post-card"}}
+            {{/foreach}}
+        </div>
+    </div>
+</aside>
+{{/if}}
+{{/get}}
+{{/has}}
+{{/has}}
+
+{{!-- Footer CTA --}}
+{{> "cta-footer" headline="Like what you're reading?" subheadline="Sign up and get more chapters for free. Upgrade to membership for full access to new chapters, video training, and a private community." button_text="Subscribe for free"}}
+
+{{/post}}
+

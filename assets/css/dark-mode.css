@@ -1,0 +1,143 @@
+/* Dark Mode Specific Styles */
+
+/* Dark mode is primarily handled via CSS custom properties in vars.css */
+/* This file contains additional dark mode specific overrides */
+
+.dark body {
+    /* Add subtle noise texture in dark mode */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Enhanced glow effects in dark mode */
+.dark .db-btn-primary {
+    box-shadow: var(--shadow), 0 0 20px rgba(0, 204, 255, 0.2);
+}
+
+.dark .db-btn-primary:hover {
+    box-shadow: 5px 5px 0 var(--color-border), 0 0 30px rgba(0, 204, 255, 0.3);
+}
+
+/* Neon-style links in dark mode */
+.dark a:hover {
+    text-shadow: 0 0 8px rgba(0, 204, 255, 0.5);
+}
+
+/* Enhanced status pill glow */
+.dark .db-status-new {
+    box-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
+}
+
+.dark .db-status-rewriting {
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+}
+
+/* CRT scanline effect (optional - more intense in dark mode) */
+.dark .db-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.1) 2px,
+        rgba(0, 0, 0, 0.1) 4px
+    );
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Pricing card glow in dark mode */
+.dark .db-pricing-featured {
+    box-shadow: 0 0 30px rgba(0, 204, 255, 0.2);
+}
+
+/* Image borders in dark mode */
+.dark .db-hero-image img,
+.dark .db-author-image img,
+.dark .db-author-profile-image {
+    border-color: var(--color-border-strong);
+}
+
+/* Chapter item hover glow */
+.dark .db-chapter-item:hover {
+    box-shadow: 0 0 20px rgba(0, 204, 255, 0.15);
+}
+
+/* Code blocks in dark mode */
+.dark pre {
+    background-color: #0d0d1a;
+    border-color: var(--color-border);
+}
+
+.dark code {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Form inputs in dark mode */
+.dark input,
+.dark textarea,
+.dark select {
+    background-color: var(--color-bg-alt);
+    border-color: var(--color-border);
+    color: var(--color-text);
+}
+
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(0, 204, 255, 0.2);
+}
+
+/* Auto color scheme - respects system preference */
+@media (prefers-color-scheme: dark) {
+    .auto-color {
+        --color-bg: #0a0a1a;
+        --color-bg-alt: #12122a;
+        --color-bg-card: #1a1a2e;
+        --color-text: #e8e6e3;
+        --color-text-secondary: #b8b6b3;
+        --color-text-muted: #888683;
+        --color-border: #2a2a4a;
+        --color-border-strong: #3a3a5a;
+        
+        --color-primary: #00ccff;
+        --color-primary-hover: #00aadd;
+        --color-accent-cyan: #00ffff;
+        --color-accent-pink: #ff0080;
+        --color-accent-lime: #00ff00;
+        
+        --color-status-original: #9ca3af;
+        --color-status-original-bg: #374151;
+        --color-status-rewriting: #fbbf24;
+        --color-status-rewriting-bg: #451a03;
+        --color-status-new: #34d399;
+        --color-status-new-bg: #064e3b;
+        
+        --shadow-sm: 2px 2px 0 var(--color-border);
+        --shadow: 3px 3px 0 var(--color-border);
+        --shadow-lg: 4px 4px 0 var(--color-border-strong);
+        --shadow-pixel: 4px 4px 0 var(--color-accent-cyan);
+    }
+    
+    .auto-color body {
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+

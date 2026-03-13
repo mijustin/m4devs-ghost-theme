@@ -1,0 +1,70 @@
+{{!< default}}
+{{!-- Author archive template --}}
+
+<div class="db-author-page">
+    {{#author}}
+    <header class="db-author-header">
+        <div class="db-section-inner">
+            <div class="db-author-profile">
+                {{#if profile_image}}
+                <img class="db-author-profile-image" src="{{img_url profile_image size="m"}}" alt="{{name}}">
+                {{/if}}
+                <div class="db-author-profile-info">
+                    <h1 class="db-page-title">{{name}}</h1>
+                    {{#if bio}}
+                    <p class="db-author-bio">{{bio}}</p>
+                    {{/if}}
+                    <div class="db-author-meta">
+                        {{#if location}}
+                        <span class="db-author-location">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            {{location}}
+                        </span>
+                        {{/if}}
+                        {{#if website}}
+                        <a href="{{website}}" class="db-author-website" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                            </svg>
+                            Website
+                        </a>
+                        {{/if}}
+                        {{#if twitter}}
+                        <a href="{{social_url type="twitter"}}" class="db-author-twitter" target="_blank" rel="noopener">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                            @{{twitter}}
+                        </a>
+                        {{/if}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {{/author}}
+
+    <section class="db-author-content">
+        <div class="db-section-inner">
+            <h2 class="db-section-title">Posts by {{#author}}{{name}}{{/author}}</h2>
+            {{#if posts}}
+            <div class="db-post-feed">
+                {{#foreach posts}}
+                {{> "post-card"}}
+                {{/foreach}}
+            </div>
+
+            {{pagination}}
+            {{else}}
+            <div class="db-empty-state">
+                <p>No posts by this author yet.</p>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+</div>
+

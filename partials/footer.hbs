@@ -1,0 +1,52 @@
+<footer class="db-footer">
+    <div class="db-footer-inner">
+        <div class="db-footer-brand">
+            <a class="db-footer-logo" href="{{@site.url}}">
+                <span>{{@site.title}}</span>
+            </a>
+            {{#if @site.description}}
+                <p class="db-footer-description">{{@site.description}}</p>
+            {{/if}}
+        </div>
+
+        <nav class="db-footer-nav">
+            <ul class="db-footer-nav-list">
+                <li class="db-footer-nav-item">
+                    <a href="/lessons/" class="db-footer-nav-link">Lessons</a>
+                </li>
+                <li class="db-footer-nav-item">
+                    <a href="/book/" class="db-footer-nav-link">The Book</a>
+                </li>
+                <li class="db-footer-nav-item">
+                    <a href="/podcasts/" class="db-footer-nav-link">Podcasts</a>
+                </li>
+                <li class="db-footer-nav-item">
+                    <a href="/updates/" class="db-footer-nav-link">Updates</a>
+                </li>
+                <li class="db-footer-nav-item">
+                    <a href="/about/" class="db-footer-nav-link">About</a>
+                </li>
+                {{#foreach @site.secondary_navigation}}
+                <li class="db-footer-nav-item">
+                    <a href="{{url}}" class="db-footer-nav-link">{{label}}</a>
+                </li>
+                {{/foreach}}
+            </ul>
+        </nav>
+
+        <div class="db-footer-meta">
+            <p class="db-footer-copyright">
+                &copy; {{date format="YYYY"}} <a href="{{@site.url}}">{{@site.title}}</a>
+            </p>
+            <p class="db-footer-powered">
+                <a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a>
+            </p>
+        </div>
+    </div>
+
+    {{!-- Retro decoration --}}
+    <div class="db-footer-decoration">
+        <div class="db-scanlines"></div>
+    </div>
+</footer>
+

@@ -1,0 +1,34 @@
+{{!< default}}
+{{!-- Book collection template - Table of Contents --}}
+
+<div class="db-book-page">
+    <header class="db-book-header">
+        <div class="db-section-inner">
+            <h1 class="db-page-title">The Original Book</h1>
+            <p class="db-page-description">
+                I wrote the original Marketing for Developers book in 2015. I'm now posting it online, so anybody can read it for free. I've added annotations for sections where my advice has changed.
+            </p>
+        </div>
+    </header>
+
+    {{!-- The Original Book Section (2015) --}}
+    <section class="db-book-content db-chapters-original">
+        <div class="db-section-inner">
+            {{#if posts}}
+            <div class="db-chapter-list">
+                {{#foreach posts}}
+                {{> "chapter-item"}}
+                {{/foreach}}
+            </div>
+            {{else}}
+            {{!-- Show message if no chapters yet --}}
+            <div class="db-empty-state">
+                <p>No chapters have been published yet. Check back soon!</p>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+
+    {{!-- CTA Section --}}
+    {{> "cta-footer" headline="Get full access to all chapters" subheadline="Join the membership to get early access to new chapters, video training, and a private community."}}
+</div>

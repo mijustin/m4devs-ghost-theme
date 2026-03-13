@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}"{{#match @custom.color_scheme "Dark"}} class="dark"{{else match @custom.color_scheme "Auto"}} class="auto-color"{{/match}}>
+<head>
+    <title>{{meta_title}}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+
+    {{!-- Preload assets --}}
+    <link rel="preload" as="style" href="{{asset "built/screen.css"}}">
+    <link rel="preload" as="script" href="{{asset "built/devbook.js"}}">
+    
+    {{!-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+
+    {{!-- Theme styles --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}">
+
+    {{!-- Dark mode initial state --}}
+    <script>
+        (function() {
+            const scheme = '{{@custom.color_scheme}}';
+            if (scheme === 'Auto') {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                }
+            }
+            // Check localStorage override
+            const stored = localStorage.getItem('devbook-theme');
+            if (stored === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else if (stored === 'light') {
+                document.documentElement.classList.remove('dark');
+            }
+        })();
+    </script>
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}{{#match @custom.title_font "Retro Mono"}} font-retro{{else match @custom.title_font "Classic Serif"}} font-serif{{else}} font-sans{{/match}}">
+
+<div class="db-viewport">
+    {{> "header"}}
+
+    <main class="db-main">
+        {{{body}}}
+    </main>
+
+    {{> "footer"}}
+</div>
+
+{{!-- Scripts --}}
+<script src="{{asset "built/devbook.js"}}"></script>
+
+{{ghost_foot}}
+
+</body>
+</html>
+

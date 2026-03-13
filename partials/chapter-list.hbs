@@ -1,0 +1,24 @@
+{{!-- Chapter list component - used on homepage and book index --}}
+
+{{!-- Legend for status dots --}}
+<div class="db-chapter-legend db-chapter-legend-top">
+    <div class="db-legend-item">
+        <span class="db-status-dot db-status-original"></span>
+        <span class="db-legend-label">Original version from 2015</span>
+    </div>
+    <div class="db-legend-item">
+        <span class="db-status-dot db-status-rewriting"></span>
+        <span class="db-legend-label">Being rewritten</span>
+    </div>
+    <div class="db-legend-item">
+        <span class="db-status-dot db-status-new"></span>
+        <span class="db-legend-label">Fully rewritten</span>
+    </div>
+</div>
+
+<div class="db-chapter-list">
+    {{#foreach posts}}
+    {{> "chapter-item" index=@index}}
+    {{/foreach}}
+</div>
+

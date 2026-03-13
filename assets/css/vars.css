@@ -1,0 +1,141 @@
+/* CSS Custom Properties */
+:root {
+    /* Colors - Light Mode (Cream paper aesthetic) */
+    --color-bg: #f5f0e6;
+    --color-bg-alt: #ebe5d9;
+    --color-bg-card: #ffffff;
+    --color-text: #1a1a2e;
+    --color-text-secondary: #4a4a5a;
+    --color-text-muted: #6b6b7a;
+    --color-border: #d4cfc3;
+    --color-border-strong: #b8b3a7;
+    
+    /* Accent colors - 90s inspired */
+    --color-primary: #0066cc;
+    --color-primary-hover: #0052a3;
+    --color-accent-cyan: #00cccc;
+    --color-accent-pink: #cc3399;
+    --color-accent-lime: #66cc00;
+    --color-accent-yellow: #ffcc00;
+    --color-accent-orange: #ff6633;
+    
+    /* Status colors */
+    --color-status-original: #6b7280;
+    --color-status-original-bg: #e5e7eb;
+    --color-status-rewriting: #d97706;
+    --color-status-rewriting-bg: #fef3c7;
+    --color-status-new: #059669;
+    --color-status-new-bg: #d1fae5;
+    
+    /* Typography */
+    --font-retro: 'VT323', monospace;
+    --font-mono: 'IBM Plex Mono', monospace;
+    --font-sans: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: var(--font-sans);
+    --font-heading: var(--font-retro);
+    
+    /* Ghost font variables for customization */
+    --gh-font-heading: var(--font-heading);
+    --gh-font-body: var(--font-body);
+    
+    /* Font sizes - modular scale */
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+    --text-6xl: 3.75rem;
+    --text-7xl: 4.5rem;
+    
+    /* Spacing */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.25rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    
+    /* Layout */
+    --max-width: 1200px;
+    --max-width-content: 720px;
+    --max-width-wide: 960px;
+    --header-height: 72px;
+    
+    /* Borders - chunky 90s style */
+    --border-width: 2px;
+    --border-width-thick: 3px;
+    --border-radius: 0;
+    --border-radius-sm: 2px;
+    --border-radius-lg: 4px;
+    
+    /* Shadows */
+    --shadow-sm: 2px 2px 0 var(--color-border);
+    --shadow: 3px 3px 0 var(--color-border);
+    --shadow-lg: 4px 4px 0 var(--color-border-strong);
+    --shadow-pixel: 4px 4px 0 var(--color-text);
+    
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+    
+    /* Z-index layers */
+    --z-dropdown: 100;
+    --z-header: 200;
+    --z-modal: 300;
+    --z-overlay: 400;
+}
+
+/* Dark mode custom properties */
+.dark {
+    --color-bg: #0a0a1a;
+    --color-bg-alt: #12122a;
+    --color-bg-card: #1a1a2e;
+    --color-text: #e8e6e3;
+    --color-text-secondary: #b8b6b3;
+    --color-text-muted: #888683;
+    --color-border: #2a2a4a;
+    --color-border-strong: #3a3a5a;
+    
+    --color-primary: #00ccff;
+    --color-primary-hover: #00aadd;
+    --color-accent-cyan: #00ffff;
+    --color-accent-pink: #ff0080;
+    --color-accent-lime: #00ff00;
+    
+    --color-status-original: #9ca3af;
+    --color-status-original-bg: #374151;
+    --color-status-rewriting: #fbbf24;
+    --color-status-rewriting-bg: #451a03;
+    --color-status-new: #34d399;
+    --color-status-new-bg: #064e3b;
+    
+    --shadow-sm: 2px 2px 0 var(--color-border);
+    --shadow: 3px 3px 0 var(--color-border);
+    --shadow-lg: 4px 4px 0 var(--color-border-strong);
+    --shadow-pixel: 4px 4px 0 var(--color-accent-cyan);
+}
+
+/* Font variant classes */
+.font-retro {
+    --font-heading: var(--font-retro);
+}
+
+.font-sans {
+    --font-heading: var(--font-sans);
+}
+
+.font-serif {
+    --font-heading: Georgia, 'Times New Roman', serif;
+}
+

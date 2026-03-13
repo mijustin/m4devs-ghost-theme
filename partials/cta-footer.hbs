@@ -1,0 +1,43 @@
+{{!-- Footer CTA Partial --}}
+{{!-- 
+Usage: {{> "cta-footer" headline="Your headline" subheadline="Your subheadline" button_text="Button text"}}
+
+States:
+- Not logged in: Shows signup CTA with custom headline/subheadline
+- Logged in (free member): Shows upgrade CTA to paid membership
+- Logged in (paid member): Hidden
+--}}
+
+{{#if @site.members_enabled}}
+    {{#if @member}}
+        {{!-- Logged in --}}
+        {{#unless @member.paid}}
+        {{!-- Free member - show upgrade CTA --}}
+        <section class="db-book-cta">
+            <div class="db-section-inner">
+                <div class="db-cta-card">
+                    <h2>Upgrade to get full access</h2>
+                    <p>You're signed up for free updates. Upgrade to get early access to new chapters, video training, and a private community.</p>
+                    <a class="db-btn db-btn-primary db-btn-lg" href="/#/portal/signup/695be788e401b0000837b142" data-portal="signup/695be788e401b0000837b142">
+                        Upgrade Membership — {{@custom.membership_price}}
+                    </a>
+                </div>
+            </div>
+        </section>
+        {{/unless}}
+        {{!-- Paid member - show nothing --}}
+    {{else}}
+        {{!-- Not logged in - show signup CTA --}}
+        <section class="db-book-cta">
+            <div class="db-section-inner">
+                <div class="db-cta-card">
+                    <h2>{{#if headline}}{{headline}}{{else}}Get full access to all chapters{{/if}}</h2>
+                    <p>{{#if subheadline}}{{subheadline}}{{else}}Join the membership to get early access to new chapters, video training, and a private community.{{/if}}</p>
+                    <a class="db-btn db-btn-primary db-btn-lg" href="/#/portal/signup/" data-portal="signup">
+                        {{#if button_text}}{{button_text}}{{else}}Join Membership — {{@custom.membership_price}}{{/if}}
+                    </a>
+                </div>
+            </div>
+        </section>
+    {{/if}}
+{{/if}}

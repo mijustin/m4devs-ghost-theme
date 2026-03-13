@@ -1,0 +1,49 @@
+{{!-- Post card for blog/updates feed --}}
+<article class="db-post-card {{post_class}}">
+    <a href="{{url}}" class="db-post-card-link">
+        {{#if feature_image}}
+        <div class="db-post-card-image">
+            <img 
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 600w"
+                sizes="(max-width: 600px) 100vw, 300px"
+                src="{{img_url feature_image size="m"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+                loading="lazy"
+            >
+        </div>
+        {{/if}}
+
+        <div class="db-post-card-content">
+            {{#if primary_tag}}
+            <span class="db-post-card-tag">{{primary_tag.name}}</span>
+            {{/if}}
+
+            <h3 class="db-post-card-title">{{title}}</h3>
+
+            {{#if excerpt}}
+            <p class="db-post-card-excerpt">{{excerpt words="25"}}</p>
+            {{/if}}
+
+            <footer class="db-post-card-footer">
+                <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="MMM D, YYYY"}}</time>
+                {{#if reading_time}}
+                <span class="db-post-card-reading-time">{{reading_time}}</span>
+                {{/if}}
+            </footer>
+        </div>
+
+        {{!-- Access indicator --}}
+        {{#unless access}}
+            {{#has visibility="paid"}}
+            <span class="db-post-card-access">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Members
+            </span>
+            {{/has}}
+        {{/unless}}
+    </a>
+</article>

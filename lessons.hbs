@@ -1,0 +1,30 @@
+{{!< default}}
+{{!-- Lessons archive template --}}
+
+<div class="db-lessons-page">
+    <header class="db-book-header">
+        <div class="db-section-inner">
+            <h1 class="db-page-title">Lessons</h1>
+            <p class="db-page-subtitle">Advice for doing marketing in an AI era</p>
+        </div>
+    </header>
+
+    <section class="db-book-content">
+        <div class="db-section-inner">
+            {{#if posts}}
+            <div class="db-chapter-list">
+                {{#foreach posts}}
+                {{> "chapter-item"}}
+                {{/foreach}}
+            </div>
+            {{else}}
+            <div class="db-empty-state">
+                <p>No lessons have been published yet. Check back soon!</p>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+
+    {{!-- CTA Section --}}
+    {{> "cta-footer" headline="Get full access to all lessons" subheadline="Join the membership to get all lessons, video training, and access to our private community."}}
+</div>
