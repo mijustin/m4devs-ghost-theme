@@ -6,6 +6,20 @@
     <header class="db-article-header">
         <div class="db-article-header-inner">
             {{!-- Breadcrumb navigation --}}
+            {{#has tag="#new-lessons"}}
+            <div class="db-lesson-breadcrumbs">
+                {{#prev_post in="tag.hash-new-lessons"}}
+                <a href="{{url}}" class="db-lesson-crumb">← {{title}}</a>
+                {{else}}
+                <span class="db-lesson-crumb is-disabled">← Previous lesson</span>
+                {{/prev_post}}
+                {{#next_post in="tag.hash-new-lessons"}}
+                <a href="{{url}}" class="db-lesson-crumb">{{title}} →</a>
+                {{else}}
+                <span class="db-lesson-crumb is-disabled">Next lesson →</span>
+                {{/next_post}}
+            </div>
+            {{else}}
             <nav class="db-breadcrumb">
                 {{#has tag="#new-book"}}
                 <a href="/book/">← Back to Table of Contents</a>
@@ -21,6 +35,7 @@
                     {{/has}}
                 {{/has}}
             </nav>
+            {{/has}}
 
             {{!-- Chapter status pill --}}
             <div class="db-article-meta-top">
@@ -42,6 +57,7 @@
             <p class="db-article-excerpt">{{custom_excerpt}}</p>
             {{/if}}
 
+            {{^has tag="#new-lessons"}}
             <div class="db-article-byline">
                 <div class="db-article-authors">
                     {{#foreach authors}}
@@ -64,6 +80,7 @@
                     </div>
                 </div>
             </div>
+            {{/has}}
 
             {{!-- Chapter status note (for book chapters only) --}}
             {{#has tag="#new-book"}}
@@ -141,6 +158,38 @@
     {{!-- Post footer --}}
     <footer class="db-article-footer">
 
+        {{!-- Lesson Navigation (for #new-lessons posts) --}}
+        {{#has tag="#new-lessons"}}
+        <nav class="db-chapter-nav">
+            <div class="db-chapter-nav-prev">
+                {{#prev_post in="tag.hash-new-lessons"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">← Previous lesson</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">← Previous lesson</span>
+                    <span class="db-chapter-nav-title">You're at the beginning</span>
+                </span>
+                {{/prev_post}}
+            </div>
+            <div class="db-chapter-nav-next">
+                {{#next_post in="tag.hash-new-lessons"}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">Next lesson →</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
+                </a>
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">Next lesson →</span>
+                    <span class="db-chapter-nav-title">You've reached the end</span>
+                </span>
+                {{/next_post}}
+            </div>
+        </nav>
+        {{/has}}
+
         {{!-- Chapter Navigation (for new book posts) --}}
         {{#has tag="#new-book"}}
         <nav class="db-chapter-nav">
@@ -205,7 +254,8 @@
         </nav>
         {{/has}}
 
-        {{!-- Newsletter CTA (for non-book posts only) --}}
+        {{!-- Newsletter CTA (for non-book, non-lesson posts only) --}}
+        {{^has tag="#new-lessons"}}
         {{^has tag="#book"}}
         {{#if @site.members_enabled}}
         <div class="db-newsletter-cta">
@@ -223,8 +273,12 @@
         </div>
         {{/if}}
         {{/has}}
+        {{/has}}
     </footer>
 </article>
+
+{{!-- Related posts and footer CTA (not shown for lessons) --}}
+{{^has tag="#new-lessons"}}
 
 {{!-- Related posts for new book --}}
 {{#has tag="#new-book"}}
@@ -286,6 +340,8 @@
 
 {{!-- Footer CTA --}}
 {{> "cta-footer" headline="Like what you're reading?" subheadline="Sign up and get more chapters for free. Upgrade to membership for full access to new chapters, video training, and a private community." button_text="Subscribe for free"}}
+
+{{/has}}
 
 {{/post}}
 

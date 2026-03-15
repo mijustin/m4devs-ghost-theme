@@ -13,22 +13,11 @@
                     <a href="/lessons/" class="db-nav-link">Lessons</a>
                 </li>
                 <li class="db-nav-item">
-                    <a href="/book/" class="db-nav-link">The Book</a>
-                </li>
-                <li class="db-nav-item">
                     <a href="/podcasts/" class="db-nav-link">Podcasts</a>
-                </li>
-                <li class="db-nav-item">
-                    <a href="/updates/" class="db-nav-link">Updates</a>
                 </li>
                 <li class="db-nav-item">
                     <a href="/about/" class="db-nav-link">About</a>
                 </li>
-                {{#foreach navigation}}
-                <li class="db-nav-item">
-                    <a href="{{url}}" class="db-nav-link{{#if current}} is-active{{/if}}">{{label}}</a>
-                </li>
-                {{/foreach}}
             </ul>
         </nav>
 
@@ -86,22 +75,11 @@
                     <a href="/lessons/" class="db-mobile-nav-link">Lessons</a>
                 </li>
                 <li class="db-mobile-nav-item">
-                    <a href="/book/" class="db-mobile-nav-link">The Book</a>
-                </li>
-                <li class="db-mobile-nav-item">
                     <a href="/podcasts/" class="db-mobile-nav-link">Podcasts</a>
-                </li>
-                <li class="db-mobile-nav-item">
-                    <a href="/updates/" class="db-mobile-nav-link">Updates</a>
                 </li>
                 <li class="db-mobile-nav-item">
                     <a href="/about/" class="db-mobile-nav-link">About</a>
                 </li>
-                {{#foreach navigation}}
-                <li class="db-mobile-nav-item">
-                    <a href="{{url}}" class="db-mobile-nav-link{{#if current}} is-active{{/if}}">{{label}}</a>
-                </li>
-                {{/foreach}}
             </ul>
             {{#if @site.members_enabled}}
             <div class="db-mobile-members">
@@ -118,4 +96,3 @@
         </nav>
     </div>
 </header>
-

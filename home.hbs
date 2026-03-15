@@ -1,185 +1,57 @@
 {{!< default}}
-{{!-- Homepage template for Marketing for Developers --}}
+{{!-- Homepage: displays first #new-lessons post with lesson navigation --}}
 
-{{!-- Hero Section --}}
-<section class="db-hero">
-    <div class="db-hero-inner">
-        <div class="db-hero-content">
-            <h1 class="db-hero-title">{{@custom.hero_heading}}</h1>
-            <p class="db-hero-subtitle">{{@custom.hero_subheading}}</p>
-        </div>
-        
-        {{!-- Two column: Image | Text --}}
-        <div class="db-hero-main">
-            <div class="db-hero-image">
-                {{#if @custom.author_image}}
-                <img src="{{@custom.author_image}}" alt="Author photo">
-                {{else}}
-                <img src="{{asset "images/author-placeholder.png"}}" alt="Author photo">
-                {{/if}}
-                <div class="db-hero-image-frame"></div>
-            </div>
-            
-            <div class="db-hero-text">
-                <p>{{@custom.hero_text}}</p>
-            </div>
+{{#get "posts" filter="tag:hash-new-lessons" order="published_at asc" limit="1" include="authors,tags" as |lesson|}}
+{{#get "posts" filter="tag:hash-new-lessons" order="published_at asc" limit="1" page="2" as |next_lesson|}}
+
+<article class="db-lesson-home">
+    <div class="db-lesson-home-inner">
+
+        {{!-- Top breadcrumbs --}}
+        <div class="db-lesson-breadcrumbs">
+            <span class="db-lesson-crumb is-disabled">← Previous lesson</span>
+            {{#foreach next_lesson}}
+            <a href="{{url}}" class="db-lesson-crumb">Next: {{title}} →</a>
+            {{else}}
+            <span class="db-lesson-crumb is-disabled">Next lesson →</span>
+            {{/foreach}}
         </div>
 
-        {{!-- CTA below, full width --}}
-        <div class="db-hero-cta">
-            {{#if @site.members_enabled}}
-                {{#if @member}}
-                <p class="db-hero-cta-text">You're on the list! Want to share this site with a friend?</p>
-                <button class="db-btn db-btn-primary db-btn-lg" onclick="navigator.share ? navigator.share({title: '{{@site.title}}', url: '{{@site.url}}'}) : navigator.clipboard.writeText('{{@site.url}}').then(() => this.textContent = 'Link copied!')">
-                    <span>Share</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="18" cy="5" r="3"></circle>
-                        <circle cx="6" cy="12" r="3"></circle>
-                        <circle cx="18" cy="19" r="3"></circle>
-                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
-                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
-                    </svg>
-                </button>
-                {{else}}
-                <p class="db-hero-cta-text">{{@custom.email_cta_text}}</p>
-                <a class="db-btn db-btn-primary db-btn-lg" href="#/portal/signup" data-portal="signup">
-                    <span>Join the list</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                        <polyline points="12 5 19 12 12 19"></polyline>
-                    </svg>
-                </a>
-                {{/if}}
-            {{/if}}
-        </div>
-    </div>
-    
-    {{!-- Decorative elements --}}
-    <div class="db-hero-decoration">
-        <div class="db-pixel-corner db-pixel-corner-tl"></div>
-        <div class="db-pixel-corner db-pixel-corner-br"></div>
-    </div>
-</section>
-
-{{!-- Who is this for Section --}}
-<section class="db-audience-section">
-    <div class="db-section-inner">
-        <header class="db-section-header">
-            <h2 class="db-section-title">{{@custom.who_is_this_for_heading}}</h2>
-            <p class="db-section-subtitle">{{@custom.who_is_this_for_text}}</p>
-        </header>
-        <div class="db-audience-content">
-            <ul class="db-audience-list">
-                <li>Developers building side projects who want to find their first customers</li>
-                <li>Technical founders who need to learn marketing fundamentals</li>
-                <li>Programmers creating products with AI who want to stand out</li>
-                <li>Indie hackers looking for practical, no-BS marketing advice</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-{{!-- Pricing Section --}}
-<section class="db-pricing-section">
-    <div class="db-section-inner">
-        <header class="db-section-header">
-            <h2 class="db-section-title">Join the Community</h2>
-            <p class="db-section-subtitle">Get the marketing advice and support you need to launch your next product</p>
+        {{#foreach lesson}}
+        <header class="db-lesson-home-header">
+            <h1 class="db-lesson-home-title">{{title}}</h1>
         </header>
 
-        <div class="db-pricing-single">
-            {{!-- Membership Option --}}
-            <div class="db-pricing-card db-pricing-featured">
-                <div class="db-pricing-badge">Best Value</div>
-                <h3 class="db-pricing-name">Community Membership</h3>
-                <div class="db-pricing-price">
-                    <span class="db-price-amount">{{@custom.membership_price}}</span>
-                </div>
-                <ul class="db-pricing-features">
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Early access to all new marketing lessons
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Full access to a growing library of video training
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        A private Discord community of people building + marketing
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Access the premium podcast feed
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Free tickets to all live workshops ($50+ value)
-                    </li>
-                    <li>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-                            <polyline points="20 6 9 17 4 12"></polyline>
-                        </svg>
-                        Priority support + Q&A from Justin in Discord
-                    </li>
-                </ul>
-                {{#if @site.members_enabled}}
-                <a class="db-btn db-btn-primary db-btn-lg db-btn-block" href="/#/portal/signup/" data-portal="signup">
-                    Join Membership
+        <section class="db-lesson-home-content gh-content">
+            {{content}}
+        </section>
+        {{/foreach}}
+
+        {{!-- Bottom lesson nav --}}
+        <nav class="db-chapter-nav">
+            <div class="db-chapter-nav-prev">
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">← Previous lesson</span>
+                    <span class="db-chapter-nav-title">You're at the beginning</span>
+                </span>
+            </div>
+            <div class="db-chapter-nav-next">
+                {{#foreach next_lesson}}
+                <a href="{{url}}" class="db-chapter-nav-link">
+                    <span class="db-chapter-nav-label">Next lesson →</span>
+                    <span class="db-chapter-nav-title">{{title}}</span>
                 </a>
-                {{/if}}
+                {{else}}
+                <span class="db-chapter-nav-link is-disabled">
+                    <span class="db-chapter-nav-label">Next lesson →</span>
+                    <span class="db-chapter-nav-title">You've reached the end</span>
+                </span>
+                {{/foreach}}
             </div>
-        </div>
-    </div>
-</section>
+        </nav>
 
-{{!-- Author Bio Section --}}
-<section class="db-author-section">
-    <div class="db-section-inner">
-        <div class="db-author-content">
-            {{#if @custom.author_image}}
-            <div class="db-author-image">
-                <img src="{{@custom.author_image}}" alt="Justin Jackson">
-            </div>
-            {{/if}}
-            <div class="db-author-text">
-                <h2 class="db-author-greeting">Hi, I'm Justin Jackson</h2>
-                <p>{{@custom.author_bio}}</p>
-                <div class="db-author-links">
-                    <a href="https://transistor.fm/?via=justin" target="_blank" rel="noopener" class="db-author-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                        </svg>
-                        transistor.fm
-                    </a>
-                    <a href="https://justinjackson.ca" target="_blank" rel="noopener" class="db-author-link">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                        justinjackson.ca
-                    </a>
-                    <a href="https://bsky.app/profile/justinjackson.ca" target="_blank" rel="noopener" class="db-author-link">
-                        <svg width="16" height="16" viewBox="0 0 568 501" fill="currentColor">
-                            <path d="M123.121 33.6637C188.241 82.5526 258.281 181.681 284 234.873C309.719 181.681 379.759 82.5526 444.879 33.6637C491.866 -1.61183 568 -28.9064 568 57.9464C568 75.2916 558.055 203.659 552.222 224.501C531.947 296.954 458.067 315.434 392.347 304.249C507.222 323.8 536.444 388.56 473.333 453.32C353.473 576.312 301.061 422.461 287.631 googletag383.039C285.169 375.812 284.017 372.431 284 375.306C283.983 372.431 282.831 375.812 280.369 383.039C266.939 422.461 214.527 576.312 94.6667 453.32C31.5556 388.56 60.7778 323.8 175.653 304.249C109.933 315.434 36.0535 296.954 15.7778 224.501C9.94525 203.659 0 75.2916 0 57.9464C0 -28.9064 76.1345 -1.61183 123.121 33.6637Z"/>
-                        </svg>
-                        Bluesky
-                    </a>
-                </div>
-            </div>
-        </div>
     </div>
-</section>
+</article>
 
+{{/get}}
+{{/get}}

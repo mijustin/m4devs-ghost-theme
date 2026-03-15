@@ -60,45 +60,15 @@
                 ],
                 "default": "Retro Mono"
             },
-            "hero_heading": {
-                "type": "text",
-                "default": "Marketing for Developers",
-                "group": "homepage"
-            },
-            "hero_subheading": {
-                "type": "text",
-                "default": "A book for programmers who want to learn marketing",
-                "group": "homepage"
-            },
-            "hero_text": {
-                "type": "text",
-                "default": "I'm rewriting this book for the AI age. With so many new people building apps with AI, the hard part is finding customers.",
-                "group": "homepage"
-            },
             "author_image": {
                 "type": "image",
                 "description": "Author photo for hero section",
-                "group": "homepage"
-            },
-            "email_cta_text": {
-                "type": "text",
-                "default": "Join the email list to get free chapters and new marketing tips",
                 "group": "homepage"
             },
             "post_cta_text": {
                 "type": "text",
                 "default": "Like what you're reading? Sign up and get more chapters for free",
                 "group": "post"
-            },
-            "who_is_this_for_heading": {
-                "type": "text",
-                "default": "Who is this book for?",
-                "group": "homepage"
-            },
-            "who_is_this_for_text": {
-                "type": "text",
-                "default": "This book is for programmers, developers, and technical founders who want to learn how to market their products.",
-                "group": "homepage"
             },
             "membership_price": {
                 "type": "text",

@@ -1,5 +1,62 @@
 /* Homepage Styles */
 
+/* ============================================================
+   Lesson Homepage (home.hbs)
+   ============================================================ */
+
+.db-lesson-home-inner {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: var(--space-10) var(--space-6) var(--space-16);
+}
+
+/* Top + inline breadcrumb nav */
+.db-lesson-breadcrumbs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: var(--space-6);
+    margin-bottom: var(--space-8);
+    border-bottom: var(--border-width) solid var(--color-border);
+    gap: var(--space-4);
+}
+
+.db-lesson-crumb {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 48%;
+}
+
+a.db-lesson-crumb:hover {
+    color: var(--color-primary);
+}
+
+.db-lesson-crumb.is-disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.db-lesson-home-header {
+    margin-bottom: var(--space-8);
+}
+
+.db-lesson-home-title {
+    font-size: var(--text-5xl);
+    line-height: 1.1;
+}
+
+.db-lesson-home-content {
+    /* inherits gh-content styles */
+}
+
+/* ============================================================ */
+
 /* Hero Section */
 .db-hero {
     position: relative;

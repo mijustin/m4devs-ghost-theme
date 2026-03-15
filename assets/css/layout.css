@@ -212,7 +212,7 @@
 .db-footer {
     background-color: var(--color-bg-alt);
     border-top: var(--border-width) solid var(--color-border);
-    padding: var(--space-12) 0 var(--space-8);
+    padding: var(--space-12) 0 0;
     position: relative;
     overflow: hidden;
 }
@@ -223,12 +223,12 @@
     padding: 0 var(--space-6);
     display: grid;
     gap: var(--space-8);
+    align-items: start;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 900px) {
     .db-footer-inner {
-        grid-template-columns: 2fr 1fr 1fr;
-        align-items: start;
+        grid-template-columns: 1fr 1fr 2fr;
     }
 }
 
@@ -273,16 +273,72 @@
     color: var(--color-text);
 }
 
-.db-footer-meta {
+/* Footer bio column */
+.db-footer-bio-inner {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+}
+
+.db-footer-bio-photo {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: var(--border-width) solid var(--color-border);
+    flex-shrink: 0;
+}
+
+.db-footer-bio-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.db-footer-bio-heading {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-2);
+}
+
+.db-footer-bio-text p {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: var(--space-3);
+}
+
+.db-footer-bio-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+}
+
+/* Footer bottom bar */
+.db-footer-bottom {
+    margin-top: var(--space-10);
+    border-top: var(--border-width) solid var(--color-border);
+    padding: var(--space-4) 0;
+}
+
+.db-footer-bottom-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-4);
     font-size: var(--text-sm);
     color: var(--color-text-muted);
 }
 
-.db-footer-meta a {
+.db-footer-bottom-inner a {
     color: var(--color-text-muted);
 }
 
-.db-footer-meta a:hover {
+.db-footer-bottom-inner a:hover {
     color: var(--color-text);
 }
 
